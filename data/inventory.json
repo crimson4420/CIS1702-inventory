@@ -1,14 +1,14 @@
 [
   {
-    "id": "A001",
-    "name": "milk",
-    "price": 1.25,
-    "quantity": 10
-  },
-  {
     "id": "A002",
     "name": "Bread",
-    "price": 2.99,
+    "price": 22.0,
     "quantity": 2
+  },
+  {
+    "id": "A005",
+    "name": "Can",
+    "price": 1.65,
+    "quantity": 3
   }
 ]
