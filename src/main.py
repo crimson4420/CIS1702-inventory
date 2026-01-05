@@ -1,15 +1,14 @@
-from storage import load_inventory, save_inventory
+from src.validation import get_non_empty_string, get_int, get_float, get_choice
 
 
 def main():
-    inv = load_inventory()
-    print("Loaded items:", len(inv))
+    name = get_non_empty_string("Enter a product name: ")
+    qty = get_int("Enter quantity (0+): ", min_value=0)
+    price = get_float("Enter price (0+): ", min_value=0)
+    option = get_choice("Choose (a)dd, (v)iew, (e)xit: ", ["a", "v", "e"])
 
-    # quick test: save a dummy item if inventory is empty
-    if len(inv) == 0:
-        inv.append({"id": "A001", "name": "Milk", "price": 1.25, "quantity": 10})
-        ok = save_inventory(inv)
-        print("Saved dummy item:", ok)
+    print("\nYou entered:")
+    print(name, qty, price, option)
 
 
 if __name__ == "__main__":
