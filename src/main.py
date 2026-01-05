@@ -27,7 +27,7 @@ def main():
 
         elif choice == "2":
             # View Stock
-            print_stock_table(inventory)
+            print_stock_table(sorted(inventory, key=lambda x: str(x.get("id", ""))))
 
         elif choice == "3":
             # Update Item

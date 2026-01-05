@@ -92,3 +92,6 @@ def prompt_update_fields() -> Tuple[str, Optional[str], Optional[float], Optiona
         new_qty = get_int("Enter new quantity (0+): ", min_value=0)
 
     return item_id, new_name, new_price, new_qty
+
+def pause() -> None:
+    input("\nPress Enter to continue...")

@@ -71,6 +71,9 @@ def update_item(
         if new_quantity < 0:
             return False, "New quantity cannot be negative."
         item["quantity"] = int(new_quantity)
+    
+    if new_name is None and new_price is None and new_quantity is None:
+        return False, "No changes selected."
 
     return True, f"Updated item (ID: {item_id})."
 
