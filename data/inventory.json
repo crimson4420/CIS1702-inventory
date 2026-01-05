@@ -4,5 +4,11 @@
     "name": "Milk",
     "price": 1.25,
     "quantity": 10
+  },
+  {
+    "id": "A002",
+    "name": "Bread",
+    "price": 2.99,
+    "quantity": 2
   }
 ]

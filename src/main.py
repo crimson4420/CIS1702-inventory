@@ -1,26 +1,62 @@
-from src.inventory import add_item, update_item, remove_item, search_by_name
+from src.storage import load_inventory, save_inventory
+from src.ui import (
+    print_menu,
+    get_menu_choice,
+    print_stock_table,
+    prompt_new_item,
+    prompt_update_fields,
+    prompt_search_query,
+    prompt_item_id,
+)
+from src.inventory import add_item, update_item, remove_item, search_by_name, find_by_id
 
 
 def main():
-    inv = []
+    inventory = load_inventory()
+    print(f"Loaded {len(inventory)} item(s).")
 
-    ok, msg = add_item(inv, "A001", "Milk", 1.25, 10)
-    print(ok, msg)
+    while True:
+        print_menu()
+        choice = get_menu_choice()
 
-    ok, msg = add_item(inv, "A001", "Duplicate Milk", 1.50, 2)
-    print(ok, msg)
+        if choice == "1":
+            # Add Item
+            item_id, name, price, qty = prompt_new_item()
+            ok, msg = add_item(inventory, item_id, name, price, qty)
+            print(msg)
 
-    ok, msg = update_item(inv, "A001", new_price=1.35, new_quantity=8)
-    print(ok, msg)
+        elif choice == "2":
+            # View Stock
+            print_stock_table(inventory)
 
-    results = search_by_name(inv, "mi")
-    print("Search results:", results)
+        elif choice == "3":
+            # Update Item
+            item_id, new_name, new_price, new_qty = prompt_update_fields()
+            ok, msg = update_item(inventory, item_id, new_name, new_price, new_qty)
+            print(msg)
 
-    ok, msg = remove_item(inv, "A001")
-    print(ok, msg)
+        elif choice == "4":
+            # Search
+            query = prompt_search_query()
+            results = search_by_name(inventory, query)
+            if results:
+                print_stock_table(results)
+            else:
+                print("No matching items found.")
 
-    ok, msg = remove_item(inv, "A001")
-    print(ok, msg)
+        elif choice == "5":
+            # Remove Item
+            item_id = prompt_item_id("enter")
+            ok, msg = remove_item(inventory, item_id)
+            print(msg)
+
+        elif choice == "6":
+            # Save & Exit
+            if save_inventory(inventory):
+                print("Inventory saved. Goodbye!")
+            else:
+                print("Error: Could not save inventory file.")
+            break
 
 
 if __name__ == "__main__":
