@@ -1,3 +1,6 @@
+#provides reusable input validation functions
+#to ensure the program never crashes due to invalid user input
+
 from typing import Iterable, Optional
 
 
@@ -10,6 +13,8 @@ def get_non_empty_string(prompt: str) -> str:
 
 
 def get_int(prompt: str, min_value: Optional[int] = None, max_value: Optional[int] = None) -> int:
+    #repeatedly prompts the user to input a valid integer 
+    #for some features a miniumum value is also enforced
     while True:
         raw = input(prompt).strip()
         try:

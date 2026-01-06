@@ -1,3 +1,10 @@
+#main program entry point for the inventory management system
+#this file coordinates:
+#loading and saving data
+#displaying te menu
+#handling user choice
+#calling inventory logic functions
+
 from src.storage import load_inventory, save_inventory
 from src.ui import (
     print_menu,
@@ -9,34 +16,35 @@ from src.ui import (
     prompt_item_id,
 )
 from src.inventory import add_item, update_item, remove_item, search_by_name, find_by_id
-
+#this is the main application loop
+#loads inventory data and displays the menu on repeat aswell as processes the users actions util the user chooses to exit
 
 def main():
-    inventory = load_inventory()
+    inventory = load_inventory()      #loads inventory data from file at programs start
     print(f"Loaded {len(inventory)} item(s).")
 
-    while True:
+    while True:   #main menu loops until the user chooses to save and exit
         print_menu()
         choice = get_menu_choice()
 
         if choice == "1":
-            # Add Item
+            # Add Item to inventory
             item_id, name, price, qty = prompt_new_item()
             ok, msg = add_item(inventory, item_id, name, price, qty)
             print(msg)
 
         elif choice == "2":
-            # View Stock
+            # View Stock currently in the inventory
             print_stock_table(sorted(inventory, key=lambda x: str(x.get("id", ""))))
 
         elif choice == "3":
-            # Update Item
+            # Update Item currently in the inventory
             item_id, new_name, new_price, new_qty = prompt_update_fields()
             ok, msg = update_item(inventory, item_id, new_name, new_price, new_qty)
             print(msg)
 
         elif choice == "4":
-            # Search
+            # Search available items in the inventory
             query = prompt_search_query()
             results = search_by_name(inventory, query)
             if results:
@@ -45,13 +53,13 @@ def main():
                 print("No matching items found.")
 
         elif choice == "5":
-            # Remove Item
+            # Remove Item from current inventory
             item_id = prompt_item_id("enter")
             ok, msg = remove_item(inventory, item_id)
             print(msg)
 
         elif choice == "6":
-            # Save & Exit
+            # Save & Exit , saves all current changes and closes the main loop
             if save_inventory(inventory):
                 print("Inventory saved. Goodbye!")
             else:

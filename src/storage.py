@@ -1,3 +1,6 @@
+#handles the loading and saving of the inventory data to a JSON file
+#all file I/O is isolated here to keep the rest of the program clean
+
 import json
 import os
 from typing import List, Dict, Any

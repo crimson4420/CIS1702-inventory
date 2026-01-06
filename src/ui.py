@@ -1,3 +1,7 @@
+#handles all user facing outputs and prompts
+#this is responsible for displaying the menus and printing the tables
+#this also uses the validation to collect the users inputs
+
 from typing import List, Dict, Any, Optional, Tuple
 
 from src.validation import get_non_empty_string, get_int, get_float, get_choice
@@ -5,7 +9,7 @@ from src.validation import get_non_empty_string, get_int, get_float, get_choice
 Item = Dict[str, Any]
 
 
-def print_menu() -> None:
+def print_menu() -> None:  #this displays the menu options to the user in a clean and understandable way
     print("\n=== Inventory Management System ===")
     print("1) Add Item")
     print("2) View Stock")
@@ -21,6 +25,7 @@ def get_menu_choice() -> str:
 
 
 def print_stock_table(inventory: List[Item]) -> None:
+    #displays the user a table of the inventory items in a formatted way
     if not inventory:
         print("\n(No items in inventory)")
         return
@@ -48,6 +53,7 @@ def print_stock_table(inventory: List[Item]) -> None:
 
 
 def prompt_new_item() -> Tuple[str, str, float, int]:
+    #prompts the user to input details of a new inventory item using the validation to get correct values 
     print("\n--- Add New Item ---")
     item_id = get_non_empty_string("Enter unique item ID: ")
     name = get_non_empty_string("Enter item name: ")

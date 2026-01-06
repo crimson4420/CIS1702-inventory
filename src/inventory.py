@@ -1,3 +1,5 @@
+#contains the inventory management logic (CRUD operations)
+#this only processes inventory data passed to it 
 from typing import List, Dict, Any, Optional, Tuple
 
 Item = Dict[str, Any]
