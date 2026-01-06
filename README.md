@@ -19,3 +19,5 @@ inventory is a list of the items used for the code
 example item: {"id":"A001","name":"Milk","price":1.25,"quantity":10}
 
 storage layer: safe failure for missing files,empty files, bad json files and writes json with indent
+
+use (python -m src.main) to run the project in the terminal without causing errors, using the original run feature will cause logic errors
